@@ -3,7 +3,7 @@
     <header>
       <p class="header-title">My personal costs</p>
     </header>
-    <main>
+    <main class="main">
       <button class="add-btn" @click="showForm = !showForm">ADD NEW COST  +</button>
       <AddCostForm @addCost = "addCost" v-if = "showForm"></AddCostForm>
       <PaymentsTable :items="costsList" />
@@ -77,6 +77,9 @@ export default {
   margin-top: 60px;
   margin: 0;
   padding: 0;
+}
+.main {
+  position: relative;
 }
 .wrapper {
   max-width: 1200px;

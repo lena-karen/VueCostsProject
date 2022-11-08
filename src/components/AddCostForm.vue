@@ -37,14 +37,23 @@
 
 <style>
     .wrapper-form {
-        width: 300px;
+        width: 400px;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        justify-content: center;
+        align-items: center;
         margin: 20px;
+        padding: 10px;
+        position: absolute;
+        top: -50px;
+        left: 200px;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: rgb(239, 239, 232);
+
     }
     .wrapper-form input {
-        width: 100%;
+        width: 300px;
         height: 30px;
         outline: none;
         border: 1px solid grey;

@@ -28,7 +28,7 @@ import Pagination from './Pagination'
         data() {
             return {
                 page: 1,
-                quantityOnPage: 3
+                quantityOnPage: 5
             }
         },
         computed: {
@@ -66,6 +66,7 @@ import Pagination from './Pagination'
         display: flex;
         flex-direction: column;
         width: 50%;
+        margin-top: 100px;
     }
     .table-row {
         display: flex;

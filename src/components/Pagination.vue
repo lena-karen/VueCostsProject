@@ -15,7 +15,7 @@
         data() {
             return {
               //  pagesArray: [1],
-                itemsPerPage: 3,
+                itemsPerPage: 5,
                 clickedPage: 1
             }
         },
