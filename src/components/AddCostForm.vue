@@ -1,9 +1,12 @@
 <template>
     <div class="wrapper-form">
-        <input type = "number" placeholder="Amount" v-model = "amount">
-        <input type="text" placeholder="Type" v-model = "type">
-        <input type="date" placeholder="Date" v-model = "date">
-        <button @click="onAddCost">Add</button>
+        <input type = "number" placeholder="Amount" v-model = "costsData.amount">
+        <select v-model = "costsData.type" class="selection">
+            <option v-for="category of categories" v-bind:value = "category">{{category}}</option>
+           
+        </select>
+        <input type="date" placeholder="Date" v-model = "costsData.date">
+        <button @click="addCost">Add</button>
     </div>
 </template>
 
@@ -11,25 +14,23 @@
     export default {
         data() {
             return {
-                amount: '',
-                type: '',
-                date: '',
-                id: 4
+                costsData: {
+                
+                    type: 'food',
+                    amount: 0
+                }
+                
             }
         },
-        computed: {},
+        computed: {
+            categories() {
+                return this.$store.getters.getCategories
+            }
+        },
         methods: {
-            onAddCost() {
-                const cost = {
-                    amount: +this.amount,
-                    type: this.type,
-                    date: this.date,
-                    id: this.id++
-                }
-                this.$emit('addCost', cost);
-                this.amount = '';
-                this.type = '';
-                this.date = ''
+            addCost() {
+                this.costsData.date = new Date().toLocaleDateString('en-us', {timeZone: 'UTC'})
+                this.$store.commit('addNewCost', Object.assign({}, this.costsData));
             }
         }
     }
@@ -57,6 +58,13 @@
         height: 30px;
         outline: none;
         border: 1px solid grey;
+        border-radius: 5px;
+        padding: 5px 20px;
+        margin-bottom: 10px;
+    }
+    .selection {
+        width: 343px;
+        height: 40px;
         border-radius: 5px;
         padding: 5px 20px;
         margin-bottom: 10px;

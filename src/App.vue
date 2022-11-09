@@ -5,8 +5,8 @@
     </header>
     <main class="main">
       <button class="add-btn" @click="showForm = !showForm">ADD NEW COST  +</button>
-      <AddCostForm @addCost = "addCost" v-if = "showForm"></AddCostForm>
-      <PaymentsTable :items="costsList" />
+      <AddCostForm v-if = "showForm"></AddCostForm>
+      <PaymentsTable />
       
     </main>
   </div>
@@ -25,45 +25,33 @@ export default {
   },
   data() {
     return {
-      costsList: [],
+     // costsList: [],
       showForm: false,
      // pages: [1],
      // itemsPerPage: 3,
       pageNumber: 1
     }
   },
-  created() {
+  /*created() {
     this.costsList = this.fetchData();
    // this.pages = this.getPageQuantity();
-  },
-  methods: {
+  },*/
+ /* methods: {
     fetchData(){
       return [
         {
-          amount: 100,
-          type: 'Entertainment',
+          amount: this.amount,
+          type: this.categories[0],
           date: '22.10.2022',
-          id: 1
         },
-        {
-          amount: 200,
-          type: 'Food',
-          date: '23.10.2022',
-          id: 2
-        },
-        {
-          amount: 1000,
-          type: 'Travel',
-          date: '24.10.2022', 
-          id: 3
-        }
+        
       ]
-    },
+    },*/
 
-    addCost(data) {
+   /* addCost(data) {
       this.costsList = [...this.costsList, data];
     }
-  }
+  }*/
 }
 </script>
 

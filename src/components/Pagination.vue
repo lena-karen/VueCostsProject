@@ -8,27 +8,25 @@
 
 <script>
     export default {
-        props: ['costsQuantity'],
-        created() {
-           
-        },
         data() {
             return {
-              //  pagesArray: [1],
-                itemsPerPage: 5,
                 clickedPage: 1
             }
         },
         computed: {
+            quantityOnPage: function() {
+                return this.$store.getters.getQuantityOnPage
+            },
+            items: function() {
+                return this.$store.getters.getCostsList
+            },
             pagesArray: function() {
-                if (this.costsQuantity == 0) {
+                if (this.items.length == 0) {
                     return 1;
                 } else {
-                    const pagesQuantity =  Math.ceil(this.costsQuantity / this.itemsPerPage);
-                    return pagesQuantity
+                    const page =  Math.ceil(this.items.length / this.quantityOnPage);
+                    return page
                 }
-                    
-                
             }
         },
         methods: {
@@ -46,7 +44,7 @@
                 console.log(this.clickedPage)
                 
 
-                if (this.clickedPage == Math.ceil(this.costsQuantity/this.itemsPerPage)) {
+                if (this.clickedPage == Math.ceil(this.items.length/this.quantityOnPage)) {
                     return;
                 } else {
                     this.clickedPage++;

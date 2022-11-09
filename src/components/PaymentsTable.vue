@@ -1,44 +1,43 @@
 <template>
     <div class="wrapper-table">
         <div class="table-row">
-            <p class="cost-num">#</p>
             <p class="cost-date">Date</p>
             <p class="cost-category">Category</p>
             <p class="cost-amount">Amount</p>
         </div>
         <div v-for = "item, idx of costsOnPage" v-bind:key="idx" class="table-row">
-            <p class="cost-num">{{item.id}}</p>
             <p class="cost-date">{{item.date}}</p>
             <p class="cost-category">{{item.type}}</p>
             <p class="cost-amount">{{item.amount}}</p>
         </div>
-        <Pagination @changePage = "changePage" :costsQuantity="items.length"/>
+        <Pagination @changePage = "changePage" />
     </div>
 </template>
 
 <script>
 import Pagination from './Pagination'
+
     export default {
-        props: {
-            items: {
-                type: Array,
-                default: [],
-            }
-        },
+        
         data() {
             return {
                 page: 1,
-                quantityOnPage: 5
             }
         },
         computed: {
+            items() {
+                return this.$store.getters.getCostsList
+            },
+            quantityOnPage() {
+                return this.$store.getters.getQuantityOnPage
+            },
             costsOnPage: function() {
                 let subArray = [];
                 for (let i = this.quantityOnPage * (this.page - 1); i < Math.min(this.page * this.quantityOnPage, this.items.length); i++) {
                     subArray.push(this.items[i])
                 }
                 return subArray
-            }
+            },
         },
         components: {
             Pagination
@@ -46,16 +45,6 @@ import Pagination from './Pagination'
         methods: {
             changePage(num) {
                 this.page = num;
-                console.log(num)
-             //   console.log(this.items[0].amount, this.page, this.quantityOnPage)
-               // this.quantityOnPage = quantity;
-            /*    for (let i = num * quantity - quantity; i < num * quantity; i++) {
-                    this.costsOnPage.push(this.items[i])
-                console.log(this.items[i], num, quantity)
-                }
-                for (let i = 0; i < this.costsOnPage.length; i++ ) {
-                    console.log(this.costsOnPage[i])
-                }*/
             }
         }
     }
@@ -71,6 +60,7 @@ import Pagination from './Pagination'
     .table-row {
         display: flex;
         border-bottom: 1px solid rgb(199, 195, 195);
+        text-align: center;
     }
     .table-row:first-child {
         font-weight: bold;
@@ -79,13 +69,13 @@ import Pagination from './Pagination'
         width: 35px;
     }
     .cost-date {
-        width: 200px;
+        width: 150px;
         display: block;
     }
     .cost-category {
         width: 300px;
     }
     .cost-amount {
-        width: 30px;
+        width: 60px;
     }
 </style>
