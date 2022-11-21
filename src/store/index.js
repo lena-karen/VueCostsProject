@@ -16,11 +16,13 @@ export default new Vuex.Store({
             'entertainment'
         ],
         costsList: [{id: 1, type: 'food', date: '12/11/2022', amount: 200}],
-        quantityOnPage: 5
+        quantityOnPage: 5,
+        showForm: false
     },
     getters: {
         getCategories: (state) => state.categories,
         getCostsList: (state) => state.costsList,
-        getQuantityOnPage: (state) => state.quantityOnPage
+        getQuantityOnPage: (state) => state.quantityOnPage,
+        getFormShow: (state) => state.showForm
     }
 })

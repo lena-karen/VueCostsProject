@@ -4,10 +4,17 @@
       <p class="header-title">My personal costs</p>
     </header>
     <main class="main">
-      <button class="add-btn" @click="showForm = !showForm">ADD NEW COST  +</button>
-      <AddCostForm v-if = "showForm"></AddCostForm>
-      <PaymentsTable />
+      <div>
+        <router-link to = '/form' class="add-btn" @click="showForm = !showForm">ADD NEW COST  +</router-link>
+        <router-link class="add-btn router-btn" to = '/form/food/200'>ADD NEW FOOD COST</router-link>
+        <router-link class="add-btn router-btn" to = '/form/transport/50'>ADD NEW TRANSPORT COST</router-link>
+        <router-link class="add-btn router-btn" to = '/form/entertainment/1000'>ADD NEW ENTERTAINMENT COST</router-link>
+      </div>
       
+    <router-view ></router-view>
+    <AddCostForm v-if = "showForm"></AddCostForm>
+    <PaymentsTable />
+    
     </main>
   </div>
 </template>
@@ -15,12 +22,14 @@
 <script>
 import PaymentsTable from './components/PaymentsTable'
 import AddCostForm from './components/AddCostForm'
+import PageNotFound from './components/PageNotFound'
 //import Pagination from './components/Pagination'
 export default {
   name: 'App',
   components: {
     PaymentsTable,
     AddCostForm,
+    PageNotFound
   //  Pagination
   },
   data() {
@@ -68,6 +77,16 @@ export default {
 }
 .main {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.main div {
+  display: flex;
+  gap: 20px;
+}
+.router-btn {
+  text-decoration: none;
 }
 .wrapper {
   max-width: 1200px;

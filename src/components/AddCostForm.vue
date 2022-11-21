@@ -7,6 +7,7 @@
         </select>
         <input type="date" placeholder="Date" v-model = "costsData.date">
         <button @click="addCost">Add</button>
+        <router-link to = '/'>Close</router-link>
     </div>
 </template>
 
@@ -16,8 +17,9 @@
             return {
                 costsData: {
                 
-                    type: 'food',
-                    amount: 0
+                   // type: 'food',
+                   type: this.$route.params.type,
+                    amount: this.$route.params.price
                 }
                 
             }
@@ -25,13 +27,15 @@
         computed: {
             categories() {
                 return this.$store.getters.getCategories
-            }
+            },
+            
         },
         methods: {
             addCost() {
                 this.costsData.date = new Date().toLocaleDateString('en-us', {timeZone: 'UTC'})
                 this.$store.commit('addNewCost', Object.assign({}, this.costsData));
             }
+          
         }
     }
 </script>
