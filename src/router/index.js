@@ -15,16 +15,6 @@ export default new Router({
             path: '/form/:type/:price',
             name: 'addFood',
             component: AddCostForm
-        }/*,
-        {
-            path: '/transport/:price',
-            name: 'addTransport',
-            component: AddCostForm
-        },
-        {
-            path: '/entertainment/:price',
-            name: 'addEntertainment',
-            component: AddCostForm
-        },*/
+        }
     ]
 })

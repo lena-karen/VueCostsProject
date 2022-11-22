@@ -18,12 +18,19 @@
                 costsData: {
                 
                    // type: 'food',
-                   type: this.$route.params.type,
+                    type: this.$route.params.type,
                     amount: this.$route.params.price
                 }
                 
             }
         },
+      /*  mounted() {
+            return {
+                costsData: {
+                    type: this.categories[0]
+                }
+            }
+        }*/
         computed: {
             categories() {
                 return this.$store.getters.getCategories
@@ -34,6 +41,7 @@
             addCost() {
                 this.costsData.date = new Date().toLocaleDateString('en-us', {timeZone: 'UTC'})
                 this.$store.commit('addNewCost', Object.assign({}, this.costsData));
+               // this.$store.dispatch('getList', Object.assign({}, this.costsData));
             }
           
         }

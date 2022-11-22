@@ -18,7 +18,6 @@
 import Pagination from './Pagination'
 
     export default {
-        
         data() {
             return {
                 page: 1,
@@ -26,6 +25,7 @@ import Pagination from './Pagination'
         },
         computed: {
             items() {
+                console.log(this.$store.getters.getCostsList)
                 return this.$store.getters.getCostsList
             },
             quantityOnPage() {

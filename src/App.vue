@@ -10,7 +10,7 @@
         <router-link class="add-btn router-btn" to = '/form/transport/50'>ADD NEW TRANSPORT COST</router-link>
         <router-link class="add-btn router-btn" to = '/form/entertainment/1000'>ADD NEW ENTERTAINMENT COST</router-link>
       </div>
-      
+
     <router-view ></router-view>
     <AddCostForm v-if = "showForm"></AddCostForm>
     <PaymentsTable />
@@ -23,44 +23,24 @@
 import PaymentsTable from './components/PaymentsTable'
 import AddCostForm from './components/AddCostForm'
 import PageNotFound from './components/PageNotFound'
-//import Pagination from './components/Pagination'
+
 export default {
   name: 'App',
   components: {
     PaymentsTable,
     AddCostForm,
     PageNotFound
-  //  Pagination
   },
   data() {
     return {
-     // costsList: [],
       showForm: false,
-     // pages: [1],
-     // itemsPerPage: 3,
       pageNumber: 1
     }
   },
-  /*created() {
-    this.costsList = this.fetchData();
-   // this.pages = this.getPageQuantity();
-  },*/
- /* methods: {
-    fetchData(){
-      return [
-        {
-          amount: this.amount,
-          type: this.categories[0],
-          date: '22.10.2022',
-        },
-        
-      ]
-    },*/
-
-   /* addCost(data) {
-      this.costsList = [...this.costsList, data];
-    }
-  }*/
+  mounted() {
+    this.$store.dispatch('getList')
+  }
+ 
 }
 </script>
 
