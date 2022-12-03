@@ -9,12 +9,17 @@ export default new Router({
         {
             path: '/form',
             name: 'addCosts',
-            component: AddCostForm
+            component: () => import('../components/AddCostForm.vue')
         },
         {
             path: '/form/:type/:price',
             name: 'addFood',
-            component: AddCostForm
+            component: () => import('../components/AddCostForm.vue')
+        },
+        {
+            path: '/form/:id',
+            name: 'changeCost',
+            component: () => import('../components/EditCostForm.vue')
         }
     ]
 })

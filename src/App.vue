@@ -4,43 +4,55 @@
       <p class="header-title">My personal costs</p>
     </header>
     <main class="main">
-      <div>
-        <router-link to = '/form' class="add-btn" @click="showForm = !showForm">ADD NEW COST  +</router-link>
-        <router-link class="add-btn router-btn" to = '/form/food/200'>ADD NEW FOOD COST</router-link>
-        <router-link class="add-btn router-btn" to = '/form/transport/50'>ADD NEW TRANSPORT COST</router-link>
-        <router-link class="add-btn router-btn" to = '/form/entertainment/1000'>ADD NEW ENTERTAINMENT COST</router-link>
-      </div>
+      
+        <button class="add-btn" v-on:click="showModal">ADD NEW COST  +</button>
+    
+        <ModalWindow v-bind:id = "'addForm'">
+            <AddCostForm v-bind:id = "'addForm'"/>
+        </ModalWindow>
 
-    <router-view ></router-view>
-    <AddCostForm v-if = "showForm"></AddCostForm>
-    <PaymentsTable />
+        <PaymentsTable />
     
     </main>
   </div>
 </template>
 
 <script>
-import PaymentsTable from './components/PaymentsTable'
-import AddCostForm from './components/AddCostForm'
-import PageNotFound from './components/PageNotFound'
+import PaymentsTable from './components/PaymentsTable.vue'
+import AddCostForm from './components/AddCostForm.vue'
+import ModalWindow from './components/ModalWindow.vue'
+
 
 export default {
+
   name: 'App',
   components: {
     PaymentsTable,
     AddCostForm,
-    PageNotFound
+    ModalWindow
   },
+
+  computed: {
+    categories() {
+      return this.$store.getters.getCategories
+    },
+  },
+
   data() {
     return {
-      showForm: false,
-      pageNumber: 1
+      pageNumber: 1,
     }
   },
+
   mounted() {
     this.$store.dispatch('getList')
+  },
+
+ methods: {
+  showModal() {
+    this.$modal.show('addForm')
   }
- 
+ }
 }
 </script>
 
@@ -61,13 +73,7 @@ export default {
   flex-direction: column;
   gap: 30px;
 }
-.main div {
-  display: flex;
-  gap: 20px;
-}
-.router-btn {
-  text-decoration: none;
-}
+
 .wrapper {
   max-width: 1200px;
   display: flex;
@@ -87,5 +93,16 @@ export default {
   color: white;
   border-radius: 5px;
   cursor: pointer;
+}
+.wrapper-form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  right: 50%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
 }
 </style>

@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     mutations: {
-        addNewCost: (state, payload) => state.costsList.push(payload)
+        addNewCost: (state, payload) => state.costsList.push(payload),
+        changeCost: (state, payload) => state.costsList = payload,
+        deleteCost: (state, payload) => state.costsList = payload
     },
     state: {
         categories: [
@@ -29,9 +31,9 @@ export default new Vuex.Store({
             return new Promise(
                 (res) => {
                     const startCosts = [
-                            { id: 1, type: 'food', date: '21.11.2022', amount: 200 },
-                            { id: 2, type: 'travel', date: '21.11.2022', amount: 2000 },
-                            { id: 3, type: 'transport', date: '21.11.2022', amount: 50 }
+                            { id: 1, type: 'food', date: '11/01/2022', amount: 200 },
+                            { id: 2, type: 'travel', date: '11/02/2022', amount: 2000 },
+                            { id: 3, type: 'transport', date: '11/03/2022', amount: 50 }
                     ]
                     startCosts.forEach(el => setTimeout(() => {commit('addNewCost', el), 2000}),
                 rej =>{})
